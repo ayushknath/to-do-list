@@ -1,6 +1,7 @@
 const themeToggler = document.querySelector(".theme-ctrl");
 const taskList = document.querySelector(".task-list");
 const addButton = document.querySelector(".user-task-add");
+const taskInput = document.getElementById("user-task-input");
 
 // IMPLEMENT DARK MODE
 function toggleTheme() {
@@ -28,9 +29,31 @@ function toggleTheme() {
 
 themeToggler.addEventListener("click", toggleTheme);
 
+// COMPLETE TASK
+function completeTask(e) {
+    const eventTarget = e.target;
+
+    if (eventTarget.classList.contains("user-task-check")) {
+        eventTarget.parentElement.previousElementSibling.style.textDecoration = "line-through";
+    } else if (eventTarget.classList.contains("fa-check")) {
+        eventTarget.parentElement.parentElement.previousElementSibling.style.textDecoration = "line-through";
+    }
+}
+
+// DELETE ITEMS FROM TASK LIST
+function deleteTask(e) {
+    const eventTarget = e.target;
+
+    if (eventTarget.classList.contains("user-task-delete")) {
+        eventTarget.parentElement.parentElement.remove();
+    } else if (eventTarget.classList.contains("fa-trash")) {
+        eventTarget.parentElement.parentElement.parentElement.remove();
+    }
+}
+
 // ADD ITEMS TO TASK LIST
 function addTask() {
-    const taskValue = document.getElementById("user-task-input").value;
+    const taskValue = taskInput.value;
 
     if (taskValue !== '') {
         const li = document.createElement("li");
@@ -67,7 +90,23 @@ function addTask() {
         li.appendChild(div);
 
         taskList.appendChild(li);
+
+        taskInput.value = '';
+
+        // LISTEN FOR CLICK EVENT ON CHECK BUTTON
+        checkButton.addEventListener("click", completeTask);
+
+        // LISTEN FOR CLICK EVENT ON DELETE BUTTON
+        deleteButton.addEventListener("click", deleteTask);
     }
 }
 
 addButton.addEventListener("click", addTask);
+
+// ADD TASK TO TASK LIST ON PRESSING "ENTER" KEY
+taskInput.addEventListener("keypress", (e) => {
+    if (e.code === "Enter") {
+        addTask();
+    }
+});
+
