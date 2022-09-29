@@ -50,7 +50,7 @@ header h1 {
 }
 
 /* INPUT */
-form {
+.user-task-form {
   display: flex;
   align-items: center;
   justify-content: space-between;
