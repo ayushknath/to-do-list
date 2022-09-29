@@ -16,6 +16,12 @@
 
 body {
   font-family: "Inter", sans-serif;
+  transition: 0.3s background-color, 0.3s color;
+}
+
+body.dark-mode {
+  color: var(--light);
+  background-color: var(--dark);
 }
 
 input {
@@ -104,6 +110,11 @@ input:focus {
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
   background-color: rgba(0, 97, 210, 0.05);
+  transition: 0.3s background-color;
+}
+
+body.dark-mode .task-list li .task {
+  background-color: rgba(0, 97, 210, 0.24);
 }
 
 .task-list li .task-edit-ctrls {
@@ -143,6 +154,7 @@ input:focus {
   border: 0;
   outline: 0;
   border-radius: 50%;
+  transition: 0.3s background-color;
 }
 
 .theme-ctrl i {
@@ -158,13 +170,13 @@ input:focus {
   color: var(--light);
 }
 
-/* .theme-ctrl.to-light {
+.theme-ctrl.to-light {
   background-color: var(--light);
 }
 
 .theme-ctrl.to-light i {
   color: var(--dark);
-} */
+}
 
 /* MEDIA QUERIES */
 
