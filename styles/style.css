@@ -154,7 +154,11 @@ body.dark-mode .task-list li .task {
   border: 0;
   outline: 0;
   border-radius: 50%;
-  transition: 0.3s background-color;
+  transition: 0.3s all;
+}
+
+.theme-ctrl:active {
+  transform: scale(0.95);
 }
 
 .theme-ctrl i {
